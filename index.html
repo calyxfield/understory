@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111510">
+  <meta name="description" content="Small original puzzles by Calyx. Enter carefully.">
+  <title>Understory — puzzles by Calyx</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Understory home">
+      <span class="calyx-mark" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i>
+      </span>
+      <span>UNDERSTORY</span>
+    </a>
+    <div class="header-meta">
+      <span>1 puzzle alive</span>
+      <button class="text-button" id="share-button" type="button">invite someone ↗</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">A small cabinet of deliberate problems</p>
+      <h1 id="hero-title">Get something<br><em>beautifully wrong.</em></h1>
+      <p class="hero-copy">
+        Original puzzles for people who enjoy the moment a confident answer
+        develops a hairline fracture.
+      </p>
+      <a class="enter-link" href="#puzzle">enter puzzle 001 <span>↓</span></a>
+    </section>
+
+    <section class="puzzle-shell" id="puzzle" aria-labelledby="puzzle-title">
+      <div class="puzzle-heading">
+        <div>
+          <p class="eyebrow">Puzzle 001 · Logic · 8–15 min</p>
+          <h2 id="puzzle-title">Five Doors</h2>
+        </div>
+        <div class="difficulty" role="img" aria-label="Difficulty: two out of five">
+          <span class="filled"></span><span class="filled"></span><span></span><span></span><span></span>
+          <small>difficulty</small>
+        </div>
+      </div>
+
+      <div class="premise">
+        <p>Five doors stand before you. Exactly one is safe.</p>
+        <p>Each door carries a plaque:</p>
+      </div>
+
+      <ol class="plaques" aria-label="The five door plaques">
+        <li><span>1</span><p>The safe door has an odd number.</p></li>
+        <li><span>2</span><p>Door 1 is not safe.</p></li>
+        <li><span>3</span><p>Exactly one of plaques 1 and 2 is true.</p></li>
+        <li><span>4</span><p>The safe door is beside door 5.</p></li>
+        <li><span>5</span><p>Door 3 is safe.</p></li>
+      </ol>
+
+      <div class="rule-card">
+        <span class="rule-glyph" aria-hidden="true">✦</span>
+        <p>Exactly <strong>two</strong> plaques are true, and the safe door’s own plaque is false.</p>
+      </div>
+
+      <form class="answer-panel" id="answer-form">
+        <fieldset>
+          <legend>Which door do you open?</legend>
+          <div class="door-options">
+            <label><input type="radio" name="door" value="1"><span><b>01</b></span></label>
+            <label><input type="radio" name="door" value="2"><span><b>02</b></span></label>
+            <label><input type="radio" name="door" value="3"><span><b>03</b></span></label>
+            <label><input type="radio" name="door" value="4"><span><b>04</b></span></label>
+            <label><input type="radio" name="door" value="5"><span><b>05</b></span></label>
+          </div>
+        </fieldset>
+        <button class="check-button" type="submit">test the door</button>
+      </form>
+
+      <div class="result" id="result" aria-live="polite" hidden>
+        <p class="result-kicker" id="result-kicker"></p>
+        <p id="result-copy"></p>
+      </div>
+
+      <div class="assist-grid">
+        <section class="hints" aria-labelledby="hint-title">
+          <div class="section-label">
+            <h3 id="hint-title">Need a smaller problem?</h3>
+            <span id="hint-count">0 / 3 hints used</span>
+          </div>
+          <button class="secondary-button" id="hint-button" type="button">take one hint</button>
+          <ol class="hint-list" id="hint-list" aria-live="polite"></ol>
+        </section>
+
+        <section class="solution" aria-labelledby="solution-title">
+          <div class="section-label">
+            <h3 id="solution-title">Want the anatomy?</h3>
+            <span>spoilers, obviously</span>
+          </div>
+          <button class="secondary-button" id="solution-button" type="button" aria-expanded="false">reveal reasoning</button>
+        </section>
+      </div>
+
+      <section class="solution-body" id="solution-body" hidden>
+        <p class="eyebrow">The clean route</p>
+        <h3>Door 5 is safe.</h3>
+        <p>
+          Test each possible safe door against both constraints. Doors 1 and 2
+          produce exactly two true plaques, but each makes its own plaque true.
+          Doors 3 and 4 produce three true plaques. Only door 5 leaves exactly
+          plaques 1 and 2 true while plaque 5 remains false.
+        </p>
+
+        <div class="truth-table-wrap">
+          <table>
+            <caption>Truth count under each possible safe door</caption>
+            <thead>
+              <tr><th scope="col">Safe door</th><th scope="col">True plaques</th><th scope="col">Own plaque</th><th scope="col">Passes?</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">1</th><td>1, 3</td><td>True</td><td>No</td></tr>
+              <tr><th scope="row">2</th><td>2, 3</td><td>True</td><td>No</td></tr>
+              <tr><th scope="row">3</th><td>1, 2, 5</td><td>True</td><td>No</td></tr>
+              <tr><th scope="row">4</th><td>2, 3, 4</td><td>True</td><td>No</td></tr>
+              <tr class="winner"><th scope="row">5</th><td>1, 2</td><td>False</td><td>Yes</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow">More things are germinating</p>
+      <p>One puzzle is a specimen. A collection begins at two.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>Made by Calyx · 2026</span>
+    <a href="#top">back to canopy ↑</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>link copied</div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
